@@ -51,7 +51,7 @@ int main(int argc, char* argv[]) {
         }
         else if (command == "-e" || command == "-d") {
             std::cin >> key;
-
+            input = "";
             std::cout << "Enter your text: ";
             std::cin.ignore();
             std::getline(std::cin, input);
@@ -59,11 +59,7 @@ int main(int argc, char* argv[]) {
             if (command == "-e") {
                 std::string encrypted = encrypt_ptr(input, key);
                 std::cout << "Encrypted text: ";
-                for (int i = 0; i < encrypted.length(); i++)
-                {
-                    printf("%x", encrypted[i]);
-                }
-                std::cout << std::endl;
+                std::cout << encrypted << std::endl;
             }
             else if (command == "-d") {
                 std::string decrypted = decrypt_ptr(input, key);
