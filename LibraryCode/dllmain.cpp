@@ -28,8 +28,8 @@ extern "C" {
 
         for (int i = 0; i < length; i++) {
             std::string hex = rawText.substr(i * 2, 2);
-            int decryptedValue = (std::stoi(hex, 0, 16) + 128 - key) % 128;
-            decryptedStream << static_cast<char>(decryptedValue);
+            int decryptedValue = (std::stoi(hex, 0, 16) - key + 128) % 128;
+            decryptedStream << static_cast<char>(decryptedValue < 0 ? decryptedValue + 128 : decryptedValue);
         }
 
         std::string decryptedString = decryptedStream.str();
