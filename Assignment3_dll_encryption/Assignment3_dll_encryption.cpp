@@ -13,10 +13,13 @@ void help() {
 }
 
 int main(int argc, char* argv[]) {
-    std::string ar = argv[1];
-    if (ar == "-h")
+    if (argc > 1)
     {
-        help();
+        std::string ar = argv[1];
+        if (ar == "-h")
+        {
+            help();
+        }
     }
     HINSTANCE handle = LoadLibrary(TEXT("LibraryCode.dll"));
     if (handle == nullptr || handle == INVALID_HANDLE_VALUE) {
