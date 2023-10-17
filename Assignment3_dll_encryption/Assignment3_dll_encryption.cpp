@@ -1,8 +1,8 @@
 #include <iostream>
 #include <windows.h>
 
-typedef char* (*encrypt_ptr_t)(char*, int);
-typedef char* (*decrypt_ptr_t)(char*, int);
+typedef std::string (*encrypt_ptr_t)(std::string, int);
+typedef std::string (*decrypt_ptr_t)(std::string, int);
 
 int main() {
     HINSTANCE handle = LoadLibrary(TEXT("LibraryCode.dll"));
@@ -26,18 +26,15 @@ int main() {
     }
 
 
-    char text[] = "Hello, World!";
+    std::string text = "Hello, World!";
     int key = 3;
-    char* encryptedText = encrypt_ptr(text, key);
+    std::string encryptedText = encrypt_ptr(text, key);
     std::cout << "Encrypted: " << encryptedText << std::endl;
 
-    char* decryptedText = decrypt_ptr(encryptedText, key);
+    std::string decryptedText = decrypt_ptr(encryptedText, key);
     std::cout << "Decrypted: " << decryptedText << std::endl;
 
     FreeLibrary(handle);
-
-    delete[] encryptedText;
-    delete[] decryptedText;
 
     return 0;
 }
